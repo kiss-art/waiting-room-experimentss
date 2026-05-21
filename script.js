@@ -538,6 +538,8 @@ function renderDisplayQueue(queue, condition) {
 const adjustedRemaining =
   (queueIndex + 1) * CONFIG.consultationMinutes;
 
+    const remaining = adjustedRemaining;
+
     const displayStatus = "候診中";
 
     const waitText =
