@@ -522,13 +522,12 @@ function renderDisplayQueue(queue, condition) {
   }
 
   body.innerHTML = visibleQueue.map(p => {
-    const remaining = getDisplayRemainingMinutes(p);
     const queueIndex = visibleQueue.findIndex(
   q => q.受測者編號 === p.受測者編號
 );
 
 const adjustedRemaining =
-  remaining + (queueIndex * CONFIG.totalMinutes);
+  (queueIndex + 1) * CONFIG.consultationMinutes;
 
     const displayStatus = "候診中";
 
