@@ -269,34 +269,39 @@ function updateQueueStatus() {
   const queue = getQueue();
   let changed = false;
 
-  queue.forEach(p => {
-    if (p.狀態 === "正在看診") {
-  const consultSeconds =
-    Math.floor((Date.now() - p.開始看診時間戳) / 1000);
+  const seeingPatient = queue.find(p => p.狀態 === "正在看診");
 
-  if (consultSeconds >= CONFIG.consultationMinutes * 60) {
-    p.狀態 = "已看診";
-    p.候診結束時間 = new Date().toLocaleTimeString("zh-TW");
+  if (seeingPatient && seeingPatient.開始看診時間戳) {
+    const consultSeconds =
+      Math.floor((Date.now() - seeingPatient.開始看診時間戳) / 1000);
 
-    const nextVirtual = queue.find(
-      item => item.狀態 === "候診中" && item.是否虛擬
-    );
+    if (consultSeconds >= CONFIG.consultationMinutes * 60) {
+      seeingPatient.狀態 = "已看診";
+      seeingPatient.候診結束時間 = new Date().toLocaleTimeString("zh-TW");
 
-    if (nextVirtual) {
-      nextVirtual.狀態 = "正在看診";
-      nextVirtual.開始看診時間 = new Date().toLocaleTimeString("zh-TW");
-      nextVirtual.開始看診時間戳 = Date.now();
+      const nextVirtual = queue.find(
+        p => p.狀態 === "候診中" && p.是否虛擬
+      );
+
+      if (nextVirtual) {
+        nextVirtual.狀態 = "正在看診";
+        nextVirtual.開始看診時間 = new Date().toLocaleTimeString("zh-TW");
+        nextVirtual.開始看診時間戳 = Date.now();
+      }
+
+      changed = true;
     }
-
-    changed = true;
   }
-}
+
+  queue.forEach(p => {
     const elapsedSeconds = getElapsedSeconds(p);
 
-    if (p.狀態 === "候診中" && elapsedSeconds >= CONFIG.totalMinutes * 60) {
-      p.狀態 = p.是否虛擬 ? "已看診" : "等待確認";
-      p.候診結束時間 = new Date().toLocaleTimeString("zh-TW");
-      p.實際等待秒數 = elapsedSeconds;
+    if (
+      !p.是否虛擬 &&
+      p.狀態 === "候診中" &&
+      elapsedSeconds >= CONFIG.totalMinutes * 60
+    ) {
+      p.狀態 = "等待確認";
       changed = true;
     }
 
@@ -312,12 +317,16 @@ function markParticipantStatus(participantId, status) {
   const queue = getQueue();
   const records = getRecords();
 
-  const index = queue.findIndex(p => p.受測者編號 === participantId);
-  if (index === -1) return;
-
-  const p = queue[index];
+  const p = queue.find(item => item.受測者編號 === participantId);
+  if (!p) return;
 
   if (status === "正在看診") {
+    queue.forEach(item => {
+      if (item.狀態 === "正在看診") {
+        item.狀態 = "已看診";
+      }
+    });
+
     p.狀態 = "正在看診";
     p.開始看診時間 = new Date().toLocaleTimeString("zh-TW");
     p.開始看診時間戳 = Date.now();
