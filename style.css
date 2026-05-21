@@ -1,0 +1,552 @@
+body {
+  font-family: "Microsoft JhengHei", sans-serif;
+  margin: 0;
+  background: #f5f7fb;
+  color: #222;
+}
+
+.setup-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.setup-card,
+.panel {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.setup-card {
+  width: 420px;
+  text-align: center;
+}
+
+.setup-card h1 {
+  margin-top: 0;
+  color: #003a8c;
+}
+
+select,
+input,
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+button {
+  background: #003a8c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0050b3;
+}
+
+button.danger {
+  background: #c62828;
+}
+
+button.danger:hover {
+  background: #a61d24;
+}
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 24px;
+}
+
+label {
+  display: block;
+  margin-top: 16px;
+  font-weight: bold;
+}
+
+.display-page {
+  background: #eef3fb;
+}
+
+.hospital-header {
+  background: #003a8c;
+  color: white;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hospital-header h1 {
+  margin: 0;
+}
+
+.room-label {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.waiting-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 24px;
+}
+
+.number-card,
+.info-card {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.big-number {
+  font-size: 140px;
+  font-weight: bold;
+  color: #ff6a00;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.announcement-box {
+  margin-top: 24px;
+  padding: 20px;
+  background: #fff8e1;
+  border-left: 6px solid #ffb300;
+  border-radius: 8px;
+}
+
+.progress-container {
+  background: #e0e0e0;
+  border-radius: 999px;
+  overflow: hidden;
+  height: 30px;
+  margin-top: 12px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #4caf50;
+  transition: width 0.5s;
+}
+
+.estimate-text {
+  font-size: 36px;
+  font-weight: bold;
+  color: #ff6a00;
+  margin-top: 10px;
+}
+
+@media (max-width: 900px) {
+  .admin-layout,
+  .waiting-screen {
+    grid-template-columns: 1fr;
+  }
+
+  .big-number {
+    font-size: 80px;
+  }
+}
+.queue-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 15px;
+}
+
+.queue-table th,
+.queue-table td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.queue-table th {
+  background: #003a8c;
+  color: white;
+}
+
+.queue-table tr:nth-child(even) {
+  background: #f3f6fb;
+}
+
+.announcement-admin {
+  margin-top: 20px;
+  font-weight: bold;
+}
+/* ===== 臺大醫院風格候診顯示畫面 ===== */
+
+.hospital-display-page {
+  margin: 0;
+  background: #111;
+  font-family: "Microsoft JhengHei", sans-serif;
+}
+
+.hospital-screen {
+  width: 100vw;
+  min-height: 100vh;
+  background: #f3f5f8;
+  color: #1f2a37;
+  display: grid;
+  grid-template-rows: auto auto auto auto 1fr auto;
+}
+
+/* 頂部 */
+.ntuh-top {
+  background: #1f4f8f;
+  color: white;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: center;
+  padding: 18px 28px;
+}
+
+.school-logo {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.department-title {
+  text-align: center;
+}
+
+.main-title {
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.sub-title {
+  font-size: 18px;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* 醫師資訊 */
+.doctor-bar {
+  background: #e9eef6;
+  display: grid;
+  grid-template-columns: 260px 1fr 360px;
+  align-items: center;
+  padding: 18px 28px;
+  border-bottom: 4px solid #d5dce8;
+}
+
+.doctor-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.icon-box {
+  width: 56px;
+  height: 56px;
+  background: white;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+}
+
+.label-cn {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.label-en {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.doctor-name {
+  text-align: center;
+}
+
+.doctor-cn {
+  font-size: 42px;
+  font-weight: 900;
+  color: #173f73;
+}
+
+.doctor-en {
+  font-size: 18px;
+  color: #4b5563;
+}
+
+.nurse-box {
+  text-align: right;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #374151;
+}
+
+/* 號碼區 */
+.number-area {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 22px;
+  padding: 24px 28px 12px;
+}
+
+.now-box,
+.next-box {
+  background: white;
+  border-radius: 18px;
+  border: 3px solid #dde3ee;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  padding: 22px;
+}
+
+.section-title {
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.orange {
+  color: #f37021;
+}
+
+.ntuh-big-number {
+  font-size: 120px;
+  font-weight: 900;
+  color: #f37021;
+  text-align: center;
+  line-height: 1.05;
+}
+
+.patient-name {
+  font-size: 26px;
+  text-align: center;
+  color: #374151;
+  font-weight: 700;
+}
+
+.ntuh-next-number {
+  font-size: 82px;
+  font-weight: 900;
+  color: #f37021;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* 條件資訊區 */
+.condition-display-area {
+  padding: 0 28px 12px;
+}
+
+.display-progress-box,
+.display-estimate-box {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 3px solid #dbe3ef;
+  padding: 18px 24px;
+  display: grid;
+  grid-template-columns: 240px 1fr 120px;
+  align-items: center;
+  gap: 18px;
+}
+
+.display-estimate-box {
+  grid-template-columns: 240px 1fr;
+}
+
+.display-progress-title,
+.display-estimate-title {
+  font-size: 28px;
+  font-weight: 900;
+  color: #173f73;
+}
+
+.progress-container {
+  height: 34px;
+  background: #d8dee9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #f37021;
+  border-radius: 999px;
+}
+
+.display-progress-percent {
+  font-size: 28px;
+  font-weight: 900;
+  color: #f37021;
+  text-align: right;
+}
+
+.estimate-text {
+  font-size: 42px;
+  font-weight: 900;
+  color: #f37021;
+}
+
+/* 掛號名單 */
+.registered-list {
+  margin: 0 28px 12px;
+  background: white;
+  border-radius: 18px;
+  border: 3px solid #dbe3ef;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.list-title {
+  background: #1f4f8f;
+  color: white;
+  font-size: 28px;
+  font-weight: 900;
+  padding: 14px 22px;
+}
+
+.ntuh-patient-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 24px;
+}
+
+.ntuh-patient-table th {
+  background: #e9eef6;
+  color: #173f73;
+  padding: 14px;
+  font-weight: 900;
+  border-bottom: 2px solid #d5dce8;
+}
+
+.ntuh-patient-table td {
+  padding: 14px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 700;
+}
+
+.ntuh-patient-table tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.seen-row {
+  color: #9ca3af;
+  background: #f1f5f9 !important;
+}
+
+/* 公告 */
+.announcement-area {
+  background: #fff4d6;
+  border-top: 5px solid #f5a400;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: center;
+  padding: 18px 28px;
+}
+
+.announcement-title {
+  font-size: 28px;
+  font-weight: 900;
+  color: #9a5b00;
+}
+
+.announcement-text {
+  font-size: 30px;
+  font-weight: 800;
+  color: #5f3700;
+}
+
+/* 公共螢幕適配 */
+@media (max-width: 900px) {
+  .doctor-bar,
+  .number-area,
+  .display-progress-box,
+  .display-estimate-box {
+    grid-template-columns: 1fr;
+  }
+
+  .nurse-box {
+    text-align: center;
+  }
+
+  .ntuh-big-number {
+    font-size: 82px;
+  }
+
+  .ntuh-next-number {
+    font-size: 60px;
+  }
+}
+.soon-status {
+  color: #f37021;
+  font-weight: 900;
+}
+.current-name-large,
+.next-name-large {
+  font-size: 96px;
+  font-weight: 900;
+  color: #f37021;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.current-id-small,
+.next-id-small {
+  font-size: 34px;
+  color: #1f2a37;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.next-name-large {
+  font-size: 72px;
+}
+.mini-progress-container {
+  width: 100%;
+  height: 18px;
+  background: #d7dce5;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.mini-progress-bar {
+  height: 100%;
+  background: #f37021;
+  border-radius: 999px;
+}
+
+.mini-progress-text {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #f37021;
+}
+.announcement-inline {
+  margin: 24px 0;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 3px solid #d7dce5;
+}
+
+.announcement-inline-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0d47a1;
+  margin-bottom: 12px;
+}
+
+.announcement-inline-text {
+  font-size: 24px;
+  color: #333;
+  line-height: 1.6;
+}

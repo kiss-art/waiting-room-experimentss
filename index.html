@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>候診實驗系統｜初始設定</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="setup-page">
+  <div class="setup-card">
+    <h1>候診介面實驗系統</h1>
+    <p>請選擇今日實驗條件</p>
+
+    <select id="conditionSelect">
+      <option value="A">條件 A：無等待時間資訊</option>
+      <option value="B">條件 B：等待進度條</option>
+      <option value="C">條件 C：預估等待時間</option>
+    </select>
+
+    <button onclick="saveCondition()">進入研究者控制台</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

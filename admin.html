@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>研究者控制台</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="admin-layout">
+    <section class="panel">
+      <h1>研究者控制台</h1>
+      <p>今日條件：<strong id="currentCondition"></strong></p>
+
+      <label>受測者編號</label>
+      <input id="participantId" placeholder="例如 P001" />
+
+      <label>受測者姓名／代碼</label>
+      <input id="participantName" placeholder="可填姓名或代碼" />
+
+      <label>預約時間</label>
+      <input id="appointmentTime" type="time" />
+
+      <button onclick="openDisplay()">開啟對應候診顯示畫面</button>
+<button onclick="checkInParticipant()">報到並開始候診</button>
+<button onclick="markMissed()">標記過號</button>
+<button onclick="uploadRecordsToGoogleSheet()">上傳到 Google Sheets</button>
+<button onclick="resetExperiment()" class="danger">重置目前實驗</button>
+    </section>
+
+    <section class="panel">
+<h2>目前候診名單</h2>
+
+<table class="queue-table">
+  <thead>
+    <tr>
+      <th>編號</th>
+      <th>姓名／代碼</th>
+      <th>已等待</th>
+      <th>顯示等待</th>
+      <th>狀態</th><th>操作</th>
+    </tr>
+  </thead>
+  <tbody id="queueTableBody">
+    <tr>
+      <td colspan="6">目前尚無候診者</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="announcement-admin">
+  公告：<span id="currentAnnouncement">—</span>
+</p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

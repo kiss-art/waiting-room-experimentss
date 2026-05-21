@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>候診顯示畫面</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="hospital-display-page">
+  <div class="hospital-screen">
+
+    <!-- 頂部院所資訊 -->
+    <header class="ntuh-top">
+      <div class="school-logo">YunTech</div>
+      <div class="department-title">
+        <div class="main-title">創意心悸科 10診</div>
+        <div class="sub-title">Creative Palpitation Department</div>
+      </div>
+    </header>
+
+    <!-- 醫師資訊 -->
+    <section class="doctor-bar">
+      <div class="doctor-left">
+        <div class="icon-box">🩺</div>
+        <div>
+          <div class="label-cn">醫師</div>
+          <div class="label-en">Doctor</div>
+        </div>
+      </div>
+
+      <div class="doctor-name">
+        <div class="doctor-cn">黃威嘉</div>
+        <div class="doctor-en">Huang-Wei-Chia</div>
+      </div>
+
+      <div class="nurse-box">
+        <div>院聘護理師　吳明賢</div>
+        <div>Registered Nurse</div>
+      </div>
+    </section>
+
+    <!-- 目前號碼與下一號 -->
+    <section class="number-area">
+      <div class="now-box">
+        <div class="section-title orange">目前號碼 Now</div>
+        <div id="currentName" class="current-name-large">目前尚無候診者</div>
+<div id="currentNumber" class="current-id-small">—</div>
+      </div>
+
+      <div class="next-box">
+        <div class="section-title orange">下一號 Next</div>
+        <div id="nextName" class="next-name-large">—</div>
+<div id="nextNumber" class="next-id-small">—</div>
+      </div>
+    </section>
+
+    <!-- 條件資訊區 -->
+    <section id="conditionArea" class="condition-display-area"></section>
+
+    <!-- 掛號名單 -->
+    <section class="registered-list">
+      <div class="list-title">掛號名單 Registered Patient List</div>
+
+      <table class="ntuh-patient-table">
+        <thead>
+  <tr id="queueHeaderRow">
+    <th>掛號</th>
+    <th>狀態</th>
+    <th>姓名</th>
+  </tr>
+</thead>
+        <tbody id="displayQueueBody">
+          <tr>
+            <td colspan="4">目前尚無候診者</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 公告訊息 -->
+    <footer class="announcement-area">
+      <div class="announcement-title">公告訊息</div>
+      <div id="displayAnnouncement" class="announcement-text">
+        請留意現場叫號資訊。
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
