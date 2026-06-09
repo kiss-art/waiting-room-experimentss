@@ -444,24 +444,36 @@ label {
 
 /* 公告 */
 .announcement-area {
-  background: #fff4d6;
-  border-top: 5px solid #f5a400;
-  display: grid;
-  grid-template-columns: 180px 1fr;
+  margin-top: 12px;
+  background: #efe4bf;
+  border-top: 4px solid #f0a500;
+  padding: 0 24px;
+  height: 1.5em;
+  min-height: 1.5em;
+  display: flex;
   align-items: center;
-  padding: 18px 28px;
+  gap: 28px;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: content-box;
 }
 
 .announcement-title {
-  font-size: 28px;
-  font-weight: 900;
   color: #9a5b00;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.5;
+  flex-shrink: 0;
 }
 
 .announcement-text {
-  font-size: 30px;
-  font-weight: 800;
-  color: #5f3700;
+  color: #7a5200;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* 公共螢幕適配 */
