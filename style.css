@@ -192,6 +192,7 @@ label {
   box-sizing: border-box;
   padding-bottom: 72px;
   overflow: hidden;
+  position: relative;
 }
 
 /* =========================
@@ -441,10 +442,10 @@ label {
 ========================= */
 
 .announcement-area {
-  position: fixed;
+  position: absolute;
   left: 0;
+  right: 0;
   bottom: 0;
-  width: 100%;
   height: 72px;
 
   background: #fff3d6;
@@ -523,6 +524,8 @@ label {
     transform-origin: top left;
     transform: scale(calc(100vw / 1080));
     padding-bottom: 72px;
+    position: relative;
+    overflow: hidden;
   }
 
   .announcement-area {
