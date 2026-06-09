@@ -7,7 +7,7 @@ const CONFIG = {
   initialThirdNextMinutes: 5,
   initialThirdPublicWait: 17,
 
-  insertedVirtualDelays: [3],
+  autoVirtualIntervalMinutes: 3,
 
   announcementIntervalMinutes: 3,
 
@@ -294,7 +294,6 @@ function checkInParticipant() {
   }
 
   const id = generateParticipantId();
-  const delay = getNextInsertedVirtualDelay();
 
   const participant = createBaseParticipant({
     id,
@@ -305,10 +304,15 @@ function checkInParticipant() {
     waitStartTimestamp: Date.now()
   });
 
-  participant.中途虛擬延遲分鐘 = delay;
 
   queue.push(participant);
-  saveQueue(queue);
+
+if (!localStorage.getItem("autoVirtualStartedAt")) {
+  localStorage.setItem("autoVirtualStartedAt", String(Date.now()));
+  localStorage.setItem("lastAutoVirtualAddedAt", String(Date.now()));
+}
+
+saveQueue(queue);
 
   document.getElementById("participantName").value = "";
 
@@ -322,35 +326,27 @@ function checkInParticipant() {
    中途虛擬候診者
 ========================= */
 
-function addInsertedVirtualForRealPatients() {
+function addAutoVirtualPatientIfNeeded() {
+  const startedAt = Number(localStorage.getItem("autoVirtualStartedAt") || 0);
+  const lastAddedAt = Number(localStorage.getItem("lastAutoVirtualAddedAt") || 0);
+
+  if (!startedAt || !lastAddedAt) return;
+
+  const now = Date.now();
+  const intervalMs = CONFIG.autoVirtualIntervalMinutes * 60 * 1000;
+
+  if (now - lastAddedAt < intervalMs) return;
+
   const queue = getQueue();
-  let changed = false;
 
-  queue.forEach(realPatient => {
-    if (realPatient.是否虛擬) return;
-    if (realPatient.已加入中途虛擬) return;
-
-    const delay = Number(realPatient.中途虛擬延遲分鐘 || 0);
-    if (!delay) return;
-
-    const elapsedMinute = getElapsedMinutes(realPatient);
-
-    if (elapsedMinute >= delay) {
-      const virtualPatient = createVirtualParticipant({
-        status: "候診中",
-        nextDurationMinutes: delay
-      });
-
-      queue.push(virtualPatient);
-
-      realPatient.已加入中途虛擬 = true;
-      changed = true;
-    }
+  const virtualPatient = createVirtualParticipant({
+    status: "候診中"
   });
 
-  if (changed) {
-    saveQueue(queue);
-  }
+  queue.push(virtualPatient);
+
+  localStorage.setItem("lastAutoVirtualAddedAt", String(now));
+  saveQueue(queue);
 }
 
 /* =========================
@@ -494,8 +490,8 @@ function updateQueueStatus() {
     changed = true;
   }
 
-  addInsertedVirtualForRealPatients();
-  queue = getQueue();
+  addAutoVirtualPatientIfNeeded();
+queue = getQueue();
 
   const nextPatient =
     queue.find(p => p.狀態 === "即將叫號");
@@ -989,7 +985,8 @@ function resetExperiment() {
     localStorage.removeItem("virtualCount");
     localStorage.removeItem("queueNumber");
     localStorage.removeItem("lastVirtualName");
-    localStorage.removeItem("insertedVirtualDelayCount");
+    localStorage.removeItem("autoVirtualStartedAt");
+localStorage.removeItem("lastAutoVirtualAddedAt");
 
     Object.keys(localStorage).forEach(key => {
       if (key.startsWith("alertShown_")) {
