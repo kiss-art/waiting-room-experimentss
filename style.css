@@ -442,10 +442,10 @@ label {
 ========================= */
 
 .announcement-area {
-  position: absolute;
+  position: fixed;
   left: 0;
-  right: 0;
   bottom: 0;
+  width: 100vw;
   height: 72px;
 
   background: #fff3d6;
@@ -458,7 +458,7 @@ label {
   padding: 0 32px;
   box-sizing: border-box;
 
-  z-index: 9999;
+  z-index: 99999;
 }
 
 .announcement-title {
@@ -519,14 +519,16 @@ label {
   }
 
   .hospital-screen {
-    width: 1080px;
-    height: 1920px;
-    transform-origin: top left;
-    transform: scale(calc(100vw / 1080));
-    padding-bottom: 72px;
-    position: relative;
-    overflow: hidden;
-  }
+  width: 100vw;
+  height: 100vh;
+  background: #f3f5f8;
+  color: #1f2a37;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-bottom: 72px;
+  overflow: hidden;
+}
 
   .announcement-area {
     height: 72px;
