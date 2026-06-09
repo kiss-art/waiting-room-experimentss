@@ -7,7 +7,7 @@ const CONFIG = {
   initialThirdNextMinutes: 5,
   initialThirdPublicWait: 17,
 
-  insertedVirtualDelays: [4, 9],
+  insertedVirtualDelays: [3],
 
   announcementIntervalMinutes: 3,
 
