@@ -741,16 +741,20 @@ function renderDisplay() {
     document.getElementById("displayAnnouncement");
 
   if (condition === "A") {
-    if (announcementArea) announcementArea.style.display = "none";
-  } else {
-    if (announcementArea) announcementArea.style.display = "grid";
-
-    if (displayAnnouncement) {
-      displayAnnouncement.textContent =
-        localStorage.getItem("currentAnnouncement") ||
-        "請留意現場叫號資訊。";
-    }
+  if (announcementArea) {
+    announcementArea.style.display = "none";
   }
+} else {
+  if (announcementArea) {
+    announcementArea.style.display = "flex";
+  }
+
+  if (displayAnnouncement) {
+    displayAnnouncement.textContent =
+      localStorage.getItem("currentAnnouncement") ||
+      "請留意現場叫號資訊。";
+  }
+}
 }
 
 function renderDisplayQueue(visibleQueue, condition) {
