@@ -401,6 +401,32 @@ function ensureNextPatient(queue) {
 }
 
 function promoteNextPatient(queue) {
+  function playCallBell() {
+  try {
+    const audioContext =
+      new (window.AudioContext || window.webkitAudioContext)();
+
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
+
+    gainNode.gain.setValueAtTime(0.25, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(
+      0.001,
+      audioContext.currentTime + 0.6
+    );
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + 0.6);
+  } catch (error) {
+    console.log("鈴聲播放失敗", error);
+  }
+}
   const currentPatient =
     queue.find(p => p.狀態 === "正在看診");
 
@@ -414,6 +440,7 @@ function promoteNextPatient(queue) {
   }
 
   startCurrentPatient(nextPatient);
+  playCallBell();
 
   const waitingQueue = queue.filter(p => p.狀態 === "候診中");
 
@@ -1013,6 +1040,14 @@ function markMissed() {
 
 document.addEventListener("DOMContentLoaded", () => {
   const condition = getConditionFromUrlOrStorage();
+
+  document.body.addEventListener(
+  "click",
+  () => {
+    playCallBell();
+  },
+  { once: true }
+);
 
   const conditionEl =
     document.getElementById("currentCondition");
